@@ -13,6 +13,7 @@
       ../../modules/nixos/packages.nix
       ../../modules/nixos/users.nix
       inputs.home-manager.nixosModules.default
+      inputs.noctalia.nixosModules.default
     ];
 
     home-manager = {
@@ -47,6 +48,11 @@
   nix.settings = {
      experimental-features = [ "nix-command" "flakes"];
   };
+
+  services.noctalia-shell = {
+    enable = true;
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
