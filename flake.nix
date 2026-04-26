@@ -29,6 +29,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/main/configuration.nix
+        inputs.niri.nixosModules.niri
       ];
     };
 

@@ -13,6 +13,11 @@
      fastfetch
      wget
      distrobox
+
+     # Niri
+     cliphist
+     wl-clip-persist
+     xwayland-satellite
   ];
 
   users.users.work.packages = with pkgs; [
@@ -20,9 +25,8 @@
     brave
     ];
 
-#   users.users.main-dev.packages = with pkgs; [
-#     kdePackages.kate
-#     chromium
-#     ];
+  programs.kdeconnect.enable = true;
+
+  programs.niri.enable = true;
 
 }

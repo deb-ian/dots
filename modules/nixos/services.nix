@@ -35,7 +35,6 @@
   };
 
   services.flatpak.enable = true;
-  programs.kdeconnect.enable = true;
 
   virtualisation.podman = {
     enable = true;
