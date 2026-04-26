@@ -18,11 +18,14 @@
      cliphist
      wl-clip-persist
      xwayland-satellite
+     ranger
+     thunar
+     kdePackages.polkit-kde-agent-1
   ];
 
   users.users.work.packages = with pkgs; [
     kdePackages.kate
-    brave
+    ungoogled-chromium
     ];
 
   programs.kdeconnect.enable = true;

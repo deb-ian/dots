@@ -6,8 +6,10 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  #services.displayManager.sddm.enable = true;
+  #services.desktopManager.plasma6.enable = true;
+
+  services.displayManager.gdm.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -35,6 +37,10 @@
   };
 
   services.flatpak.enable = true;
+
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
+  hardware.bluetooth.enable = true;
 
   virtualisation.podman = {
     enable = true;
