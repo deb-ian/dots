@@ -8,15 +8,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     vim
+     neovim
      curl
      fastfetch
      wget
      distrobox
+     gedit
 
      # Niri
-     cliphist
-     wl-clip-persist
      xwayland-satellite
      ranger
      thunar
@@ -24,7 +23,6 @@
   ];
 
   users.users.work.packages = with pkgs; [
-    kdePackages.kate
     ungoogled-chromium
     ];
 

@@ -41,8 +41,13 @@
 
   programs.niri = {
     settings = {
+
+	prefer-no-csd = true;
+
         spawn-at-startup = [
           { command = [ "noctalia-shell" ]; }
+	  { command = [ "wl-paste" "--type" "text/plain" "--watch" "cliphist" "store" ]; }
+	  { command = [ "wl-paste" "--type" "image" "--watch" "cliphist" "store" ]; }
         ];
         layout = {
           gaps = 12;
@@ -61,35 +66,36 @@
         ];
 
         binds = {
-          # --- App launch ---
-          "Mod+T".action.spawn = "alacritty";
+          # Apps + Overview
+          "Mod+Return".action.spawn = "alacritty";
           "Mod+E".action.spawn = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
           "Mod+Shift+Slash".action.show-hotkey-overlay = {};
 
-          # --- Session control ---
+          # Session Control
           "Mod+Shift+E".action.quit = {};
           "Mod+Shift+P".action.spawn = [ "noctalia-shell" "ipc" "call" "sessionMenu" "toggle" ];
 
-          # --- Window focus ---
-          "Mod+J".action.focus-column-left = {};
+          # Window Focus
+          "Mod+H".action.focus-column-left = {};
           "Mod+L".action.focus-column-right = {};
           "Mod+Shift+WheelScrollDown".action.focus-column-right = {};
           "Mod+Shift+WheelScrollUp".action.focus-column-left = {};
-          "Mod+I".action.focus-window-up = {};
+          "Mod+J".action.focus-window-up = {};
           "Mod+K".action.focus-window-down = {};
 
-          # --- Move windows ---
-          "Mod+Shift+J".action.move-column-left = {};
+          # Window Movement
+          "Mod+Shift+H".action.move-column-left = {};
           "Mod+Shift+L".action.move-column-right = {};
-          "Mod+Shift+I".action.move-window-up = {};
+          "Mod+Shift+J".action.move-window-up = {};
           "Mod+Shift+K".action.move-window-down = {};
 
-          # --- Layout / window control ---
+          # Layout and Window Control
           "Mod+F".action.maximize-column = {};
+          "Mod+Shift+F".action.fullscreen-window = [];
           "Mod+V".action.toggle-window-floating = {};
           "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = {};
           "Mod+Q".action.close-window = {};
-          "Mod+O".action.toggle-overview = {};
+          "Mod+Tab".action.toggle-overview = {};
           "Mod+Home".action.focus-column-first = {};
           "Mod+Minus".action.set-column-width =  "-10%";
           "Mod+Equal".action.set-column-width =  "+10%";
@@ -100,7 +106,7 @@
           "Mod+Comma".action.consume-window-into-column = {};
           "Mod+Period".action.expel-window-from-column = {};
 
-          # --- Workspace switching ---
+          # Workspace shit
           "Mod+1".action.focus-workspace = 1;
           "Mod+2".action.focus-workspace = 2;
           "Mod+3".action.focus-workspace = 3;
@@ -112,8 +118,6 @@
           "Mod+9".action.focus-workspace = 9;
           "Mod+WheelScrollDown".action.focus-workspace-down = {};
           "Mod+WheelScrollUp".action.focus-workspace-up = {};
-
-          # --- Move window to workspace ---
           "Mod+Shift+1".action.move-window-to-workspace = 1;
           "Mod+Shift+2".action.move-window-to-workspace = 2;
           "Mod+Shift+3".action.move-window-to-workspace = 3;
@@ -123,20 +127,21 @@
           "Mod+Shift+7".action.move-window-to-workspace = 7;
           "Mod+Shift+8".action.move-window-to-workspace = 8;
           "Mod+Shift+9".action.move-window-to-workspace = 9;
-          "Mod+Ctrl+U".action.move-column-to-workspace-down = {};
-          "Mod+Ctrl+I".action.move-column-to-workspace-up = {};
+          "Mod+Ctrl+Z".action.move-column-to-workspace-down = {};
+          "Mod+Ctrl+C".action.move-column-to-workspace-up = {};
 
-
-          # --- Utility ---
-          "Mod+Ctrl+R".action.spawn = [ "systemctl" "--user" "restart" "niri" ];
-          #"Mod+Print".action.screenshot-screen = {};
+	  # Utility
+	  "Mod+Shift+C".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:clipboard" "toggle" ];
+	  "Print".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "region"  ];
         };
     };
   };
 
   home.packages = with pkgs; [
     alacritty
-#    fuzzel
+    cliphist
+    wl-clipboard
+    wl-clip-persist
   ];
 
   xdg.portal = {
@@ -151,8 +156,139 @@
       bar = {
         position = "top";
         density = "comfortable";
+        widgets = {
+            left = [
+              {
+                id = "Launcher";
+              }
+              {
+                formatHorizontal = "h:mm AP ddd, MMM dd";
+                id = "Clock";
+              }
+              {
+                id = "SystemMonitor";
+              }
+              {
+                id = "MediaMini";
+              }
+            ];
+            center = [
+              {
+                id = "Workspace";
+              }
+            ];
+            right = [
+              {
+                id = "Tray";
+              }
+              {
+                id = "NotificationHistory";
+              }
+              {
+                id = "Battery";
+              }
+              {
+                id = "Volume";
+              }
+              {
+                id = "ControlCenter";
+              }
+            ];
+          };
+      };
+	
+      location  = {
+      	name = "Chennai";
+      };
+      
+      dock = {
+        enabled = false;
+      };
+
+      sessionMenu  = {
+        largeButtonsLayout = "grid";
+        powerOptions = [
+            {
+              action = "lock";
+              enabled = true;
+              keybind = "1";
+            }
+            {
+              action = "reboot";
+              enabled = true;
+              keybind = "4";
+            }
+            {
+              action = "logout";
+              enabled = true;
+              keybind = "5";
+            }
+            {
+              action = "shutdown";
+              enabled = true;
+              keybind = "6";
+            }
+            {
+              action = "rebootToUefi";
+              enabled = true;
+              keybind = "7";
+            }
+          ];
+        };
+	
+	plugins = {
+     	  sources = [
+       	    {
+               enabled = true;
+               name = "Official Noctalia Plugins";
+                url = "https://github.com/noctalia-dev/noctalia-plugins";
+            }
+          ];
+          states = {
+            clipboard = { enabled = true; };
+            Screenshot  = { enabled = true; };
+            "polkit-agent" = { enabled= true; };
+            "privacy-indicator" = { enabled = true; };
+          };
+       };
+       
+       colorSchemes = {
+          useWallpaperColors = true;
+          darkMode = true;
+          generationMethod = "vibrant";
+          syncGsettings = true;
+       };
+       
+       notifications = {
+         location = "bottom_right";
+       };
+       
+       idle = {
+          enabled = true;
+          screenOffTimeout = 600;
+          lockTimeout = 660;
+          suspendTimeout = 1800;
+          fadeDuration = 5;
+        };
+       
+       controlCenter = {
+         cards = [
+              	{
+         	  enabled = true;
+         	  id = "profile-card";
+         	}
+         	{
+         	  enabled = true;
+         	  id = "audio-card";
+         	}
+         	{
+         	  enabled = true;
+         	  id = "media-sysmon-card";
+         	}
+         ];
+       };
+       	
       };
     };
-  };
 
 }
