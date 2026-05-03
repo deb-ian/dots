@@ -73,7 +73,7 @@
 
           # Session Control
           "Mod+Shift+E".action.quit = {};
-          "Mod+Shift+P".action.spawn = [ "noctalia-shell" "ipc" "call" "sessionMenu" "toggle" ];
+          "Mod+P".action.spawn = [ "noctalia-shell" "ipc" "call" "sessionMenu" "toggle" ];
 
           # Window Focus
           "Mod+H".action.focus-column-left = {};
@@ -132,7 +132,9 @@
 
 	  # Utility
 	  "Mod+Shift+C".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:clipboard" "toggle" ];
-	  "Print".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "region"  ];
+	  "Print".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "output"  ];
+	   "Mod+Shift+P".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "region"  ];
+	   "Mod+Ctrl+P".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "window"  ];
         };
     };
   };
@@ -255,7 +257,7 @@
        colorSchemes = {
           useWallpaperColors = true;
           darkMode = true;
-          generationMethod = "vibrant";
+          generationMethod = "rainbow";
           syncGsettings = true;
        };
        

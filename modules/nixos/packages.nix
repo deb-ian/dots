@@ -17,13 +17,12 @@
 
      # Niri
      xwayland-satellite
-     ranger
+#     ranger
      thunar
-     kdePackages.polkit-kde-agent-1
   ];
 
   users.users.work.packages = with pkgs; [
-    ungoogled-chromium
+#    ungoogled-chromium
     ];
 
   programs.kdeconnect.enable = true;
