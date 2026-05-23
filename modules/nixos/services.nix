@@ -9,7 +9,7 @@
   #services.displayManager.sddm.enable = true;
   #services.desktopManager.plasma6.enable = true;
 
-  services.displayManager.gdm.enable = true;
+  #services.displayManager.gdm.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {

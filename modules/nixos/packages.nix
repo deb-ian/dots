@@ -14,10 +14,11 @@
      wget
      distrobox
      gedit
+     appimage-run
 
      # Niri
      xwayland-satellite
-#     ranger
+     yazi
      thunar
   ];
 
@@ -26,7 +27,11 @@
     ];
 
   programs.kdeconnect.enable = true;
-
+  
+  programs.appimage.enable = true;
+  
+  programs.appimage.binfmt = true;
+  
   programs.niri.enable = true;
 
 }
