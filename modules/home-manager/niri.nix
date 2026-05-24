@@ -64,12 +64,12 @@
         binds = {
           # Apps + Overview
           "Mod+Return".action.spawn = "foot";
-          "Mod+E".action.spawn = [ "fuzzel" "--mode" "drun" ];
+          "Mod+E".action.spawn = [ "fuzzel" ];
           "Mod+Shift+Slash".action.show-hotkey-overlay = {};
 
           # Session Control
           "Mod+Shift+E".action.quit = {};
-#          "Mod+P".action.spawn = [ "noctalia-shell" "ipc" "call" "sessionMenu" "toggle" ];
+          "Mod+P".action.spawn = [ "spawn-sh" "~/dots/modules/home-manager/pmenu.sh" ];
 
           # Window Focus
           "Mod+H".action.focus-column-left = {};

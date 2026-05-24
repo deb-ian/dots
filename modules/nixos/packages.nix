@@ -21,6 +21,11 @@
      yazi
      thunar
   ];
+  
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    font-awesome
+  ];
 
   users.users.work.packages = with pkgs; [
 #    ungoogled-chromium
