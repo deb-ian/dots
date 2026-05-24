@@ -5,6 +5,7 @@
   imports = [
     ./git.nix
     ./niri.nix
+    ./niri-utils.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

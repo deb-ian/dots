@@ -2,10 +2,6 @@
 
 {
 
-  imports = [
-    inputs.noctalia.homeModules.default
-  ];
-
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -67,13 +63,13 @@
 
         binds = {
           # Apps + Overview
-          "Mod+Return".action.spawn = "alacritty";
-          "Mod+E".action.spawn = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
+          "Mod+Return".action.spawn = "foot";
+          "Mod+E".action.spawn = [ "fuzzel" "--mode" "drun" ];
           "Mod+Shift+Slash".action.show-hotkey-overlay = {};
 
           # Session Control
           "Mod+Shift+E".action.quit = {};
-          "Mod+P".action.spawn = [ "noctalia-shell" "ipc" "call" "sessionMenu" "toggle" ];
+#          "Mod+P".action.spawn = [ "noctalia-shell" "ipc" "call" "sessionMenu" "toggle" ];
 
           # Window Focus
           "Mod+H".action.focus-column-left = {};
@@ -131,166 +127,18 @@
           "Mod+Ctrl+C".action.move-column-to-workspace-up = {};
 
 	  # Utility
-	  "Mod+Shift+C".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:clipboard" "toggle" ];
-	  "Print".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "output"  ];
-	   "Mod+Shift+P".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "region"  ];
-	   "Mod+Ctrl+P".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "window"  ];
+#	  "Mod+Shift+C".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:clipboard" "toggle" ];
+#	  "Print".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "output"  ];
+#	   "Mod+Shift+P".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "region"  ];
+#	   "Mod+Ctrl+P".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "window"  ];
         };
     };
   };
-
-  home.packages = with pkgs; [
-    alacritty
-    cliphist
-    wl-clipboard
-    wl-clip-persist
-  ];
 
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = [ "gtk" ];
   };
-
-  programs.noctalia-shell = {
-    enable = true;
-    settings = {
-      bar = {
-        position = "top";
-        density = "comfortable";
-        widgets = {
-            left = [
-              {
-                id = "Launcher";
-              }
-              {
-                formatHorizontal = "h:mm AP ddd, MMM dd";
-                id = "Clock";
-              }
-              {
-                id = "SystemMonitor";
-              }
-              {
-                id = "MediaMini";
-              }
-            ];
-            center = [
-              {
-                id = "Workspace";
-              }
-            ];
-            right = [
-              {
-                id = "Tray";
-              }
-              {
-                id = "NotificationHistory";
-              }
-              {
-                id = "Battery";
-              }
-              {
-                id = "Volume";
-              }
-              {
-                id = "ControlCenter";
-              }
-            ];
-          };
-      };
-	
-      location  = {
-      	name = "Chennai";
-      };
-      
-      dock = {
-        enabled = false;
-      };
-
-      sessionMenu  = {
-        largeButtonsLayout = "grid";
-        powerOptions = [
-            {
-              action = "lock";
-              enabled = true;
-              keybind = "1";
-            }
-            {
-              action = "reboot";
-              enabled = true;
-              keybind = "4";
-            }
-            {
-              action = "logout";
-              enabled = true;
-              keybind = "5";
-            }
-            {
-              action = "shutdown";
-              enabled = true;
-              keybind = "6";
-            }
-            {
-              action = "rebootToUefi";
-              enabled = true;
-              keybind = "7";
-            }
-          ];
-        };
-	
-	plugins = {
-     	  sources = [
-       	    {
-               enabled = true;
-               name = "Official Noctalia Plugins";
-                url = "https://github.com/noctalia-dev/noctalia-plugins";
-            }
-          ];
-          states = {
-            clipboard = { enabled = true; };
-            Screenshot  = { enabled = true; };
-            "polkit-agent" = { enabled= true; };
-            "privacy-indicator" = { enabled = true; };
-          };
-       };
-       
-       colorSchemes = {
-          useWallpaperColors = true;
-          darkMode = true;
-          generationMethod = "rainbow";
-          syncGsettings = true;
-       };
-       
-       notifications = {
-         location = "bottom_right";
-       };
-       
-       idle = {
-          enabled = true;
-          screenOffTimeout = 600;
-          lockTimeout = 660;
-          suspendTimeout = 1800;
-          fadeDuration = 5;
-        };
-       
-       controlCenter = {
-         cards = [
-              	{
-         	  enabled = true;
-         	  id = "profile-card";
-         	}
-         	{
-         	  enabled = true;
-         	  id = "audio-card";
-         	}
-         	{
-         	  enabled = true;
-         	  id = "media-sysmon-card";
-         	}
-         ];
-       };
-       	
-      };
-    };
 
 }

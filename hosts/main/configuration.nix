@@ -58,8 +58,8 @@
     ];
   };
 
-  # Polkit
-  security.polkit.enable = true;
+  # Polkit (Using DMS's instead)
+  systemd.user.services.niri-flake-polkit.enable = false;
 
 
   # Some programs need SUID wrappers, can be configured further or are
