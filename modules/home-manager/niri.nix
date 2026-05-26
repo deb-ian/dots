@@ -69,7 +69,7 @@
 
           # Session Control
           "Mod+Shift+E".action.quit = {};
-          "Mod+P".action.spawn = [ "spawn-sh" "~/dots/modules/home-manager/pmenu.sh" ];
+          "Mod+P".action.spawn = [ "${config.home.homeDirectory}/dots/modules/home-manager/pmenu.sh" ];
 
           # Window Focus
           "Mod+H".action.focus-column-left = {};
@@ -128,7 +128,7 @@
 
 	  # Utility
 #	  "Mod+Shift+C".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:clipboard" "toggle" ];
-#	  "Print".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "output"  ];
+	  "Print".action.screenshot.show-pointer = false;
 #	   "Mod+Shift+P".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "region"  ];
 #	   "Mod+Ctrl+P".action.spawn = [ "noctalia-shell" "ipc" "call" "plugin:screenshot" "takeScreenshot" "window"  ];
         };

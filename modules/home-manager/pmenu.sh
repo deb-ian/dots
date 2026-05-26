@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash   
 SELECTION=$(printf "Lock\nSuspend\nLog out\nReboot\nShutdown" | fuzzel --dmenu -p "Power:")
 case $SELECTION in
   "Lock") swaylock ;;

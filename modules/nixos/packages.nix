@@ -18,8 +18,8 @@
 
      # Niri
      xwayland-satellite
-     yazi
      thunar
+     yazi
   ];
   
   fonts.packages = with pkgs; [

@@ -4,7 +4,25 @@
   home.packages = with pkgs; [
     foot
     libnotify
+    swaybg
   ];
+  
+  home.file.".config/foot/foot.ini".text = ''
+  	font=JetBrainsMono Nerd Font:size=10
+	letter-spacing=-0.4
+	pad=5x5
+  	
+	[colors-dark]
+	alpha=0.8
+	blur = true
+	
+	[cursor]
+	style=beam
+	blink=yes
+
+	[mouse]
+	hide-when-typing=yes   
+  '';
 
   programs.fuzzel = {
     enable = true;
@@ -47,21 +65,23 @@
   programs.waybar = {
 	  enable = true;
 	  systemd.enable = true;
+
 	  settings = {
 	    mainBar = {
 	      layer = "top";
 	      position = "top";
 	      height = 42;
+
 	      margin-top = 10;
 	      margin-left = 14;
 	      margin-right = 14;
+
 	      spacing = 8;
-	      modules-left = [
-		"clock"
-	      ];
-	      modules-center = [
-		"niri/workspaces"
-	      ];
+
+	      modules-left = [ "clock" ];
+
+	      modules-center = [ "niri/workspaces" ];
+
 	      modules-right = [
 		"cpu"
 		"memory"
@@ -70,17 +90,22 @@
 		"battery"
 		"tray"
 	      ];
+
 	      "niri/workspaces" = {
 		disable-scroll = true;
 		on-click = "activate";
 	      };
+
 	      clock = {
 		format = "󰥔  {:%I:%M %p}";
-		tooltip-format = "<big>{:%A, %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>";
+		tooltip-format =
+		  "<big>{:%A, %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>";
+
 		calendar = {
 		  mode = "month";
 		  weeks-pos = "right";
 		  on-scroll = 1;
+
 		  format = {
 		    months = "<span color='#ffffff'><b>{}</b></span>";
 		    days = "<span color='#c0c0c0'>{}</span>";
@@ -88,52 +113,72 @@
 		  };
 		};
 	      };
+
 	      cpu = {
 		interval = 5;
 		format = "󰻠  {usage}%";
 		tooltip = false;
 	      };
+
 	      memory = {
 		interval = 10;
 		format = "󰍛  {used:0.1f}G";
 		tooltip-format = "{used:0.1f}G / {total:0.1f}G used";
 	      };
+
 	      pulseaudio = {
 		scroll-step = 5;
 		format = "{icon}  {volume}%";
 		format-muted = "󰝟  muted";
+
 		format-icons = {
 		  default = [ "󰕿" "󰖀" "󰕾" ];
 		};
+
 		on-click = "pavucontrol";
 	      };
+
 	      network = {
 		interval = 5;
 		format-wifi = "󰖩  {signalStrength}%";
 		format-ethernet = "󰈀  {ifname}";
 		format-disconnected = "󰖪  offline";
-		tooltip-format-wifi = "{essid} ({signalStrength}%) — {ipaddr}";
-		tooltip-format-ethernet = "{ifname} — {ipaddr}";
+
+		tooltip-format-wifi =
+		  "{essid} ({signalStrength}%) — {ipaddr}";
+		tooltip-format-ethernet =
+		  "{ifname} — {ipaddr}";
 	      };
+
 	      battery = {
 		states = {
 		  warning = 30;
 		  critical = 15;
 		};
+
 		format = "{icon}  {capacity}%";
 		format-charging = "󰂄  {capacity}%";
 		format-plugged = "󰚥  {capacity}%";
+
 		format-icons = [
-		  "󰂎" "󰁺" "󰁼" "󰁾" "󰂀" "󰂂"
+		  "󰂎"
+		  "󰁺"
+		  "󰁼"
+		  "󰁾"
+		  "󰂀"
+		  "󰂂"
 		];
+
 		tooltip-format = "{timeTo} — {capacity}%";
 	      };
+
 	      tray = {
 		icon-size = 16;
 		spacing = 8;
 	      };
 	    };
 	  };
+
 	  style = ''
 	    * {
 	      border: none;
@@ -149,9 +194,9 @@
 	    }
 
 	    tooltip {
-	      background: rgba(18, 18, 18, 0.94);
+	      background: #121212;
 	      border-radius: 14px;
-	      border: 1px solid rgba(255, 255, 255, 0.08);
+	      border: 1px solid #2A2A2A;
 	      color: #f0f0f0;
 	    }
 
@@ -167,12 +212,13 @@
 	    #network,
 	    #battery,
 	    #tray {
-	      background: rgba(28, 28, 28, 0.78);
-	      border: 1px solid rgba(255, 255, 255, 0.07);
+	      background: #1C1C1C;
+	      border: 1px solid #2A2A2A;
 	      border-radius: 18px;
 	      color: #e0e0e0;
 	      padding: 0 16px;
 	      margin-top: 5px;
+
 	      transition:
 		background 0.2s ease,
 		color 0.2s ease;
@@ -181,13 +227,13 @@
 	    #clock {
 	      font-weight: 700;
 	      color: #ffffff;
-	      background: rgba(255, 255, 255, 0.10);
-	      border-color: rgba(255, 255, 255, 0.10);
+	      background: #2B2B2B;
+	      border-color: #3A3A3A;
 	      letter-spacing: 0.02em;
 	    }
 
 	    #clock:hover {
-	      background: rgba(255, 255, 255, 0.14);
+	      background: #353535;
 	    }
 
 	    #workspaces {
@@ -200,24 +246,25 @@
 	      margin: 5px 3px;
 	      border-radius: 13px;
 	      min-width: 28px;
+
 	      transition:
 		background 0.15s ease,
 		color 0.15s ease;
 	    }
 
 	    #workspaces button:hover {
-	      background: rgba(255, 255, 255, 0.09);
+	      background: #2F2F2F;
 	      color: #d0d0d0;
 	    }
 
 	    #workspaces button.active {
-	      background: rgba(255, 255, 255, 0.18);
+	      background: #404040;
 	      color: #ffffff;
-	      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+	      box-shadow: inset 0 0 0 1px #555555;
 	    }
 
 	    #workspaces button.urgent {
-	      background: rgba(255, 255, 255, 0.22);
+	      background: #505050;
 	      color: #ffffff;
 	    }
 
@@ -234,7 +281,7 @@
 	    #pulseaudio:hover,
 	    #network:hover,
 	    #battery:hover {
-	      background: rgba(255, 255, 255, 0.10);
+	      background: #2F2F2F;
 	      color: #ffffff;
 	    }
 
@@ -244,8 +291,10 @@
 
 	    #battery.critical {
 	      color: #ffffff;
-	      background: rgba(255, 255, 255, 0.16);
-	      animation: battery-blink 1.2s ease-in-out infinite alternate;
+	      background: #505050;
+
+	      animation:
+		battery-blink 1.2s ease-in-out infinite alternate;
 	    }
 
 	    @keyframes battery-blink {
@@ -262,7 +311,7 @@
 	    }
 
 	    #tray > .needs-attention {
-	      background: rgba(255, 255, 255, 0.16);
+	      background: #505050;
 	    }
 	  '';
 	};
@@ -312,5 +361,22 @@
 	    };
 	  };
 	};
+	
+  systemd.user.services.swaybg = {
+    Unit = {
+      Description = "Wallpaper daemon";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${config.home.homeDirectory}/Pictures/Wallpapers/wall.jpeg -m fill";
+      Restart = "on-failure";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
   
 }
