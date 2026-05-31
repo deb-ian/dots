@@ -103,7 +103,7 @@
 
 		calendar = {
 		  mode = "month";
-		  weeks-pos = "right";
+		  weeks-pos = "left";
 		  on-scroll = 1;
 
 		  format = {
