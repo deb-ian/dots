@@ -15,7 +15,8 @@
      distrobox
      gedit
      appimage-run
-
+     p7zip
+	
      # Niri
      xwayland-satellite
      thunar
