@@ -16,7 +16,8 @@
      gedit
      appimage-run
      p7zip
-	
+     uv
+
      # Niri
      xwayland-satellite
      thunar

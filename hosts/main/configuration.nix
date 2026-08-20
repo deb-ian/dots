@@ -48,13 +48,15 @@
      experimental-features = [ "nix-command" "flakes"];
      substituters = [
       "https://cache.nixos.org"
-      "https://noctalia.cachix.org"
-      "https://niri.cachix.org"          # add this line
+      "https://niri-epireyn.cachix.org"
+      # "https://noctalia.cachix.org"
+      # "https://niri.cachix.org"          # add this line
     ];
     trusted-public-keys = [
+      "niri-epireyn.cachix.org-1:tlVyFN7CtsDT+ZcLPS+ekFWeT1X6X4OqvWqbBMyIzFA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      # "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      # "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
   };
 
