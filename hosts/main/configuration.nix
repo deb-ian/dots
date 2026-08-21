@@ -12,7 +12,6 @@
       ../../modules/nixos/networking.nix
       ../../modules/nixos/packages.nix
       ../../modules/nixos/users.nix
-      ../../modules/nixos/gaming.nix
       inputs.home-manager.nixosModules.default
     ];
 
