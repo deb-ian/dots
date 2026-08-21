@@ -17,8 +17,10 @@
      appimage-run
      p7zip
      uv
-     mesa-demos
-     
+     mesa-demos     
+     jdk21
+
+
      # Niri
      xwayland-satellite
      thunar
