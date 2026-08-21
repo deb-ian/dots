@@ -17,7 +17,8 @@
      appimage-run
      p7zip
      uv
-
+     mesa-demos
+     
      # Niri
      xwayland-satellite
      thunar
@@ -33,11 +34,10 @@
 #    ungoogled-chromium
     ];
 
-  programs.kdeconnect.enable = true;
-  
   programs.appimage.enable = true;
-  
   programs.appimage.binfmt = true;
+
+  programs.kdeconnect.enable = true;
   
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   
