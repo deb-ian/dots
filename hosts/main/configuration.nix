@@ -12,7 +12,6 @@
       ../../modules/nixos/networking.nix
       ../../modules/nixos/packages.nix
       ../../modules/nixos/users.nix
-      ../../modules/nixos/adguardhome.nix
       inputs.home-manager.nixosModules.default
     ];
 
