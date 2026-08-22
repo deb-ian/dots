@@ -18,8 +18,6 @@
      p7zip
      uv
      mesa-demos     
-     jdk21
-
 
      # Niri
      xwayland-satellite
@@ -38,6 +36,12 @@
 
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
+  
+#  virtualisation.waydroid = {
+#    enable = true;
+#    package = pkgs.waydroid-nftables;
+#  };
+#  networking.nftables.enable = true;
 
   programs.kdeconnect.enable = true;
   
