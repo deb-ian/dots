@@ -2,97 +2,97 @@
 
 {
   networking = {
-  hostName = "HP-PC";
+    hostName = "HP-PC";
 
-  networkmanager = {
-    enable = true;
-    dns = "none";
+    networkmanager = {
+      enable = true;
+      dns = "none";
 
-    ensureProfiles = {
-      environmentFiles = [
-        "/etc/NetworkManager/secrets.env"
-      ];
-      profiles = {
-        "AdGuard Ethernet" = {
-          connection = {
-            id = "AdGuard Ethernet";
-            type = "ethernet";
-            interface-name = "enp0s26u1u2";
+      ensureProfiles = {
+        environmentFiles = [
+          "/etc/NetworkManager/secrets.env"
+        ];
+        profiles = {
+          "AdGuard Ethernet" = {
+            connection = {
+              id = "AdGuard Ethernet";
+              type = "ethernet";
+              interface-name = "enp0s26u1u2";
+            };
+
+            ipv4 = {
+              method = "manual";
+              addresses = "192.168.68.50/24";
+              gateway = "192.168.68.1";
+              dns = "127.0.0.1";
+            };
+
+            ipv6 = {
+              method = "disabled";
+            };
           };
 
-          ipv4 = {
-            method = "manual";
-            addresses = "192.168.68.50/24";
-            gateway = "192.168.68.1";
-            dns = "127.0.0.1";
-          };
+          "AdGuard WiFi" = {
+            connection = {
+              id = "AdGuard WiFi";
+              type = "wifi";
+              interface-name = "wlp0s20u4";
+            };
 
-          ipv6 = {
-            method = "auto";
-          };
-        };
+            wifi = {
+              mode = "infrastructure";
+              ssid = "Dev Brijesh";
+            };
 
-        "AdGuard WiFi" = {
-          connection = {
-            id = "AdGuard WiFi";
-            type = "wifi";
-            interface-name = "wlp0s20u4";
-          };
+            wifi-security = {
+              key-mgmt = "wpa-psk";
+              psk = "$ADGUARD_WIFI_PASSWORD";
+            };
 
-          wifi = {
-            mode = "infrastructure";
-            ssid = "Dev Brijesh";
-          };
+            ipv4 = {
+              method = "manual";
+              addresses = "192.168.68.50/24";
+              gateway = "192.168.68.1";
+              dns = "127.0.0.1";
+            };
 
-          wifi-security = {
-            key-mgmt = "wpa-psk";
-            psk = "$ADGUARD_WIFI_PASSWORD";
-          };
-
-          ipv4 = {
-            method = "manual";
-            addresses = "192.168.68.50/24";
-            gateway = "192.168.68.1";
-            dns = "127.0.0.1";
-          };
-
-          ipv6 = {
-            method = "auto";
+            ipv6 = {
+              method = "auto";
+            };
           };
         };
       };
     };
-  };
 
-  nameservers = [
-    "127.0.0.1"
-  ];
-
-  firewall = {
-    allowedTCPPorts = [
-      53
-      3003
+    nameservers = [
+      "127.0.0.1"
     ];
 
-    allowedUDPPorts = [
-      53
-    ];
+    firewall = {
+      allowedTCPPorts = [
+        53
+        3003
+      ];
+
+      allowedUDPPorts = [
+        53
+      ];
+    };
   };
-};
 
   services.adguardhome = {
     enable = true;
 
     # Web interface:
-    # http://192.168.68.50:3003
-    host = "0.0.0.0";
+    # http://localhost:3003
+    host = "127.0.0.1";
     port = 3003;
 
     settings = {
       dns = {
         # Listen for DNS requests from the LAN.
         bind_hosts = [
-          "0.0.0.0"
+          "127.0.0.1"
         ];
 
         # Standard DNS port.

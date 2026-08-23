@@ -18,6 +18,7 @@
      p7zip
      uv
      mesa-demos     
+     appimage-run
 
      # Niri
      xwayland-satellite
