@@ -160,7 +160,7 @@ in
 
         network = {
           interval = 5;
-          format-wifi = "󰖩 {signalStrength}% ; ↑{bandwidthUpBytes} ; ↓{bandwidthDownBytes}";
+          format-wifi = "󰖩 {signalStrength}% ↑{bandwidthUpBytes}/s ↓{bandwidthDownBytes}/s";
           format-ethernet = "󰈀 ↑{bandwidthUpBytes}/s ↓{bandwidthDownBytes}/s";
           format-disconnected = "󰖪 offline";
           tooltip-format-wifi = "{essid} ({signalStrength}%) — {ipaddr}";
